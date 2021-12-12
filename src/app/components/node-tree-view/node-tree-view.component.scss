@@ -1,0 +1,35 @@
+
+.node-tree-container {
+  gap: 16px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+
+  .add-button {
+    button {
+      font-size: 16px;
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+  }
+
+  .child-node-container {
+    margin-left: 8px;
+    padding: 8px;
+    border-left: 2px solid #aaaaaa;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .node-type-container {
+    margin: 4px 8px;
+    gap: 8px;
+    display: flex;
+    width: auto;
+    button {
+      padding: 6px 12px;
+    }
+  }
+}

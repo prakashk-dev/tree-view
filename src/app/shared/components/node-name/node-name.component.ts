@@ -1,10 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NodeEntity } from '../../../core/entities/node.entity';
 import { NodeModel } from '../../../core/models/node.model';
 
+export interface DeleteNodeProps {
+  nodeModel?: NodeModel,
+  nodeEntity?: NodeEntity
+}
 export interface NodeNameComponentProps {
   nodeModel?: NodeModel;
+  nodeEntity?: NodeEntity;
   handleAdd: EventEmitter<NodeModel>;
-  handleDelete: EventEmitter<NodeModel>;
+  handleDelete: EventEmitter<DeleteNodeProps>;
 }
 @Component({
   selector: 'app-node-name',
@@ -12,9 +18,10 @@ export interface NodeNameComponentProps {
   styleUrls: ['./node-name.component.scss']
 })
 export class NodeNameComponent implements NodeNameComponentProps {
+  @Input() nodeEntity?: NodeEntity;
   @Input() nodeModel?: NodeModel;
   @Output() handleAdd = new EventEmitter<NodeModel>();
-  @Output() handleDelete = new EventEmitter<NodeModel>();
+  @Output() handleDelete = new EventEmitter<DeleteNodeProps>();
 
   constructor() { }
 
@@ -22,7 +29,7 @@ export class NodeNameComponent implements NodeNameComponentProps {
     this.handleAdd.emit(this.nodeModel);
   }
   onDelete() {
-    this.handleDelete.emit(this.nodeModel);
+    this.handleDelete.emit({ nodeEntity: this.nodeEntity, nodeModel: this.nodeModel });
   }
 
   get nodeImgSrc() {

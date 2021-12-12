@@ -16,7 +16,7 @@ export class NodeTreeService {
     this.nodes$ = new BehaviorSubject<NodeEntity>(this._rootNodeEntity);
   }
 
-  addParentNode(nodeModel: NodeModel) {
+  addRootNode(nodeModel: NodeModel) {
     this._rootNodeEntity.addNode(nodeModel);
     this.nodes$.next(this._rootNodeEntity);
   }
@@ -25,7 +25,7 @@ export class NodeTreeService {
     this.nodes$.next(this._rootNodeEntity);
   }
 
-  removeParentNode(id: string) {
+  removeRootNode(id: string) {
     this._rootNodeEntity.removeNode(id);
     this.nodes$.next(this._rootNodeEntity);
   }

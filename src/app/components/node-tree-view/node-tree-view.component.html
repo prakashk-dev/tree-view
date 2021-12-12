@@ -1,1 +1,39 @@
-<p>node-tree-view works!</p>
+<div class="node-tree-container">
+  <h1>Add Files and Folders</h1>
+  <div class="add-button">
+    <button (click)="onAddRootFolderClick()">Add folder to root</button>
+  </div>
+  <app-node-input *ngIf="addMode && !parentEntity"  (handleAdd)="onAddChild($event)" [nodeIconSrc]="getNodeIconSrc()"></app-node-input>
+
+  <ng-template #nodeTemplateRef let-nodeModel="nodeModel" let-nodeEntity="nodeEntity">
+    <app-node-name [nodeModel]="nodeModel" [nodeEntity]="nodeEntity" (handleAdd)="onAddChildClick($event)" (handleDelete)="onDeleteChild($event)"></app-node-name>
+    <div *ngIf="selectedNodeId === nodeModel.id && !addMode" class="node-type-container">
+      <button (click)="onNodeTypeClick('file')">File</button>
+      <button (click)="onNodeTypeClick('folder')">Folder</button>
+    </div>
+    <div class="child-node-input-container">
+      <app-node-input *ngIf="addMode && parentEntity && selectedNodeId === nodeModel.id"  (handleAdd)="onAddChild($event)" [nodeIconSrc]="getNodeIconSrc()"></app-node-input>
+    </div>
+
+    <div *ngIf="hasChild(nodeModel.child)" class="child-node-container">
+      <ng-template ngFor let-child [ngForOf]="nodeModel.child.getNodes()">
+        <ng-template [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ nodeModel: child, nodeEntity: nodeModel.child }">
+        </ng-template>
+      </ng-template>
+    </div>
+  </ng-template>
+
+  <div *ngFor="let nodeModel of nodeEntity?.getNodes()">
+    <ng-template [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ nodeModel: nodeModel }">
+    </ng-template>
+  </div>
+
+</div>
+
+<div class="node-structure" *ngIf="nodeEntity?.getNodes()?.length">
+  <hr />
+  <h2> Node Structure</h2>
+  <pre>
+    {{ nodeEntity?.getNodes() | json}}
+  </pre>
+</div>
