@@ -1,1 +1,13 @@
-<p>node-input works!</p>
+
+<div class="node-input-container">
+  <div class="left-icon">
+    <img [src]="nodeIconSrc" alt="icon">
+  </div>
+  <div class="input-container">
+    <input type="text" [(ngModel)]="nodeName" />
+  </div>
+  <div class="action-buttons">
+   <button (click)="onAdd()" class="add">&#10004;</button>
+   <button (click)="onRemove()" class="remove">&#10005;</button>
+  </div>
+</div>
