@@ -1,1 +1,12 @@
-<p>node-name works!</p>
+<div class="node-name-container">
+  <div class="left-icon">
+    <img [src]="nodeImgSrc" alt="icon">
+  </div>
+  <div class="node-name">
+    {{ nodeModel?.name }}
+  </div>
+  <div class="action-buttons">
+    <button (click)="onAdd()" *ngIf="nodeModel?.type === 'folder'">+</button>
+    <button (click)="onDelete()">x</button>
+  </div>
+</div>

@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+.node-input-container,
+.node-name-container {
+  display: inline-flex;
+  gap: 4px;
+  padding: 8px 4px;
+  align-items: center;
+  border-radius: 4px;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  .left-icon {
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
