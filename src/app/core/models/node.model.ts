@@ -1,4 +1,4 @@
-import { NodeEntity } from "../entity/node.entity";
+import { NodeEntity } from "../entities/node.entity";
 
 export type NodeType = 'folder' | 'file' | 'unset' | null;
 
